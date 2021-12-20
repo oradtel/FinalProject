@@ -14,6 +14,8 @@ class AmazonheadphonesSpider(scrapy.Spider):
         "https://www.amazon.com/s?k=headphones&s=review-rank&crid=A88Q82ATWW8O&qid=1639144778&sprefix=headp%2Caps%2C314&ref=sr_pg_1"]
 
     def substring(self,str,word1,word2):
+        if not str:
+            return "0%"
         start = str.find(word1) + len(word1)
         end = str.find(word2)
         return str[start:end]
