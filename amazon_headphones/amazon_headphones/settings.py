@@ -14,7 +14,7 @@ NEWSPIDER_MODULE = 'amazon_headphones.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = 'project11 (+http://www.yourdomain.com)'
+USER_AGENT = 'okhvjhv` (+http://www.amazon.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True

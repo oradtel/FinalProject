@@ -18,3 +18,4 @@ class AmazonHeadphonesItem(scrapy.Item):
     product_1_star = scrapy.Field()
     product_avg_rating = scrapy.Field()
     product_img = scrapy.Field()
+    product_num_reviews=scrapy.Field()
