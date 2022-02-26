@@ -4,21 +4,31 @@ import { Form, Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 
 const SecondStep = (props) => {
+    // we're destructuring the user prop from the props object which we're passing in the route of the AppRouter.js 
+    // file.Then we're using the defaultValues property to set the value for each input field.
     const { user } = props;
+    // register - a function that we can assign it to each input field so that the react-hook-form can track the 
+    // changes for the input field value
+    // handleSubmit - the function we can call when the form is submitted
+    // errors - will contain the validation errors, if any
     const { register, handleSubmit, errors } = useForm({
         defaultValues: {
-            user_email: user.user_email,
-            user_password: user.user_password
+            first_name: user.first_name,
+            last_name: user.last_name,
+            age: user.age,
+            gender: user.gender
         }
     });
 
-    // navigate to the ThirdStep component
+    // for the push method, we've provided the route to which we need to redirect.
     const onSubmit = (data) => {
         props.updateUser(data);
         props.history.push('/third');
     };
 
     return (
+        // Note that for each input field, we have given a unique name which is mandatory so react-hook-form can 
+        // track the changing data.
         <Form className="input-form" onSubmit={handleSubmit(onSubmit)}>
             <motion.div
                 className="col-md-6 offset-md-3"
@@ -27,50 +37,86 @@ const SecondStep = (props) => {
                 transition={{ stiffness: 150 }}
             >
                 <Form.Group controlId="first_name">
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label>First Name</Form.Label>
                     <Form.Control
-                        type="email"
-                        name="user_email"
-                        placeholder="Enter your email address"
+                        type="text"
+                        name="first_name"
+                        placeholder="Enter your first name"
                         autoComplete="off"
                         ref={register({
-                            required: 'Email is required.',
+                            required: 'First name is required.',
                             pattern: {
-                                value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-                                message: 'Email is not valid.'
+                                value: /^[a-zA-Z]+$/,
+                                message: 'First name should contain only characters.'
                             }
                         })}
-                        className={`${errors.user_email ? 'input-error' : ''}`}
+                        className={`${errors.first_name ? 'input-error' : ''}`}
                     />
-                    {errors.user_email && (
-                        <p className="errorMsg">{errors.user_email.message}</p>
+                    {errors.first_name && (
+                        <p className="errorMsg">{errors.first_name.message}</p>
                     )}
                 </Form.Group>
 
-                <Form.Group controlId="password">
-                    <Form.Label>Password</Form.Label>
+                <Form.Group controlId="last_name">
+                    <Form.Label>Last Name</Form.Label>
                     <Form.Control
-                        type="password"
-                        name="user_password"
-                        placeholder="Choose a password"
+                        type="text"
+                        name="last_name"
+                        placeholder="Enter your last name"
                         autoComplete="off"
                         ref={register({
-                            required: 'Password is required.',
-                            minLength: {
-                                value: 6,
-                                message: 'Password should have at-least 6 characters.'
+                            required: 'Last name is required.',
+                            pattern: {
+                                value: /^[a-zA-Z]+$/,
+                                message: 'Last name should contain only characters.'
                             }
                         })}
-                        className={`${errors.user_password ? 'input-error' : ''}`}
+                        className={`${errors.last_name ? 'input-error' : ''}`}
                     />
-                    {errors.user_password && (
-                        <p className="errorMsg">{errors.user_password.message}</p>
+                    {errors.last_name && (
+                        <p className="errorMsg">{errors.last_name.message}</p>
                     )}
+                </Form.Group>
+
+                <Form.Group controlId="age">
+                    <Form.Label>Age</Form.Label>
+                    <Form.Control
+                        type="number"
+                        name="age"
+                        placeholder="Enter your age"
+                        autoComplete="off"
+                        ref={register({
+                            required: 'Age is required.',
+                            pattern: {
+                                value: /200|1?[1-9]?\d/,
+                                message: 'Age should contain only digits.'
+                            }
+                        })}
+                        className={`${errors.age ? 'input-error' : ''}`}
+                    />
+                    {errors.age && (
+                        <p className="errorMsg">{errors.age.message}</p>
+                    )}
+                </Form.Group>
+
+                <Form.Group controlId="gender">
+                    <Form.Label>Gender</Form.Label>
+                    <Form.Control
+                        as="select"
+                        name="gender"
+                        placeholder="Enter your gender"
+                        autoComplete="off"
+                        ref={register({
+                            required: 'Gender is required.'
+                        })}>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </Form.Control>
                 </Form.Group>
 
                 <Button variant="primary" type="submit">
                     Next
-                </Button>
+      </Button>
             </motion.div>
         </Form>
     );

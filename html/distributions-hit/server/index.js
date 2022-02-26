@@ -4,7 +4,7 @@ const userRouter = require('./routers/user');
 require('./db');
 
 const app = express();
-const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT || 3035;
 
 /*
  * It's always good to separate out each router in its own file and include it using the app.use method. 
