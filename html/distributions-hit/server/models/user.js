@@ -13,21 +13,15 @@ const userSchema = mongoose.Schema(
             required: true,
             trim: true
         },
-        user_email: {
-            type: String,
+        age: {
+            type: Number,
             required: true,
-            trim: true,
-            validate(value) {
-                if (!value.match(/^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/)) {
-                    throw new Error('Email is not valid.');
-                }
-            }
+            trim: true
         },
-        user_password: {
+        gender: {
             type: String,
             required: true,
-            trim: true,
-            minlength: 6
+            trim: true
         },
         country: {
             type: String,

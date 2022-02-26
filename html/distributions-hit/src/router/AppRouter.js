@@ -4,6 +4,7 @@ import FirstStep from '../components/FirstStep';
 import Header from '../components/Header';
 import SecondStep from '../components/SecondStep';
 import ThirdStep from '../components/ThirdStep';
+import Disagree from '../components/Disagree';
 
 const AppRouter = () => {
     // we will store the user-entered data in each step in the user state that's an object.
@@ -51,6 +52,12 @@ const AppRouter = () => {
                             />
                         )}
                         path="/third"
+                    />
+                    <Route
+                        render={(props) => (
+                            <Disagree {...props} user={user} updateUser={updateUser} />
+                        )}
+                        path="/disagree"
                     />
                 </Switch>
             </div>
