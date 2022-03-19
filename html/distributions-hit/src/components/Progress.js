@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 // destructuring the location property from the props object and then the pathname property from the location property
 const Progress = ({ location: { pathname } }) => {
-    const isFirstStep = pathname === '/';
+    const isFirstStep = pathname === '/first';
     const isSecondStep = pathname === '/second';
     const isThirdStep = pathname === '/third';
 
