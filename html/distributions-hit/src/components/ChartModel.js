@@ -1,29 +1,8 @@
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import { withRouter } from 'react-router-dom';
 
-const ChartModel = () => {
-    const data = [
-        {
-            "name": "1",
-            "percentage": 1
-        },
-        {
-            "name": "2",
-            "percentage": 3
-        },
-        {
-            "name": "3",
-            "percentage": 9
-        },
-        {
-            "name": "4",
-            "percentage": 27
-        },
-        {
-            "name": "5",
-            "percentage": 60
-        }
-    ];
+const ChartModel = (props) => {
+    const { data } = props
 
     return (
         <BarChart width={730} height={250} data={data}>

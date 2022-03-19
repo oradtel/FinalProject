@@ -135,10 +135,11 @@ const ThirdStep = (props) => {
                 (result) => {
                     if (result.isConfirmed || result.isDismissed) {
                         props.resetUser();
-                        props.history.push('/');
+                        props.history.push('/instructions');
                     }
                 }
             );
+
         } catch (error) {
             if (error.response) {
                 Swal.fire({
