@@ -6,6 +6,7 @@ import SecondStep from '../components/SecondStep';
 import ThirdStep from '../components/ThirdStep';
 import Disagree from '../components/Disagree';
 import Introduction from '../components/Introduction';
+import Instructions from '../components/Instructions';
 
 const AppRouter = () => {
     // we will store the user-entered data in each step in the user state that's an object.
