@@ -6,6 +6,7 @@ import axios from 'axios';
 import { BASE_API_URL } from '../utils/constants';
 import { motion } from 'framer-motion';
 import Swal from 'sweetalert2';
+import { useForm } from 'react-hook-form';
 
 const ThirdStep = (props) => {
     // countries, states and cities are declared in the state that will store the list of countries, states and cities, respectively, coming from the API
@@ -19,6 +20,14 @@ const ThirdStep = (props) => {
     const [selectedCountry, setSelectedCountry] = useState('');
     const [selectedState, setSelectedState] = useState('');
     const [selectedCity, setSelectedCity] = useState('');
+
+    const { user } = props;
+
+    const { register, errors } = useForm({
+        defaultValues: {
+            captcha: user.captcha
+        }
+    });
 
     // make an API call to get the list of countries
     // we've passed an empty array [] as the second argument to the useEffect hook so the hook will be called only once when the component is mounted.
@@ -204,6 +213,27 @@ const ThirdStep = (props) => {
                                 <option value="">No cities found</option>
                             )}
                     </Form.Control>
+                </Form.Group>
+
+                <Form.Group controlId="captcha">
+                    <img src="../images/captcha.png"></img>
+                    <Form.Control
+                        type="text"
+                        name="captcha"
+                        placeholder="Enter the text above"
+                        autoComplete="off"
+                        ref={register({
+                            required: 'Validation is required.',
+                            pattern: {
+                                value: /AHi5b#L8/,
+                                message: 'Your input is not correct. Please try again'
+                            }
+                        })}
+                        className={`${errors.captcha ? 'input-error' : ''}`}
+                    />
+                    {errors.captcha && (
+                        <p className="errorMsg">{errors.captcha.message}</p>
+                    )}
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Register

@@ -88,8 +88,8 @@ const SecondStep = (props) => {
                         ref={register({
                             required: 'Age is required.',
                             pattern: {
-                                value: /200|1?[1-9]?\d/,
-                                message: 'Age should contain only digits.'
+                                value: /^(?:1[01][0-9]|120|1[8-9]|[2-9][0-9])$/,
+                                message: 'Age should be between 18 - 120.'
                             }
                         })}
                         className={`${errors.age ? 'input-error' : ''}`}

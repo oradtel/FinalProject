@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import SecondStep from '../components/SecondStep';
 import ThirdStep from '../components/ThirdStep';
 import Disagree from '../components/Disagree';
+import Introduction from '../components/Introduction';
 
 const AppRouter = () => {
     // we will store the user-entered data in each step in the user state that's an object.
@@ -27,12 +28,18 @@ const AppRouter = () => {
                 <Header />
                 <Switch>
                     <Route
+                        render={(props) => (
+                            <Introduction {...props} user={user} updateUser={updateUser} />
+                        )}
+                        path="/"
+                        exact={true}
+                    />
+                    <Route
                         // pass the user and updateUser as props to the components connected to the route
                         render={(props) => (
                             <FirstStep {...props} user={user} updateUser={updateUser} />
                         )}
-                        path="/"
-                        exact={true}
+                        path="/first"
                     />
                     <Route
                         render={(props) => (
