@@ -56,7 +56,7 @@ const Instructions = (props) => {
 
     const onSubmit = (data) => {
         props.updateUser(data);
-        props.history.push('/first');
+        props.history.push('/example');
     };
 
     return (
@@ -89,12 +89,12 @@ const Instructions = (props) => {
                     </tr>
                     <tr>
                         <td><
-                            Button style={{ textAlign: 'center', position: 'relative', left: '50px' }} variant="primary">
+                            Button style={{ textAlign: 'center', position: 'relative', left: '50px' }} variant="primary" type="submit">
                                 This is my pick
                             </Button>
                         </td>
                         <td>
-                            <Button style={{ textAlign: 'center', position: 'relative', left: '50px' }} variant="primary">
+                            <Button style={{ textAlign: 'center', position: 'relative', left: '50px' }} variant="primary" type="submit">
                                 This is my pick
                             </Button>
                         </td>
