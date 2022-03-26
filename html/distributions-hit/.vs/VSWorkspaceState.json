@@ -1,14 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\server",
-    "\\server\\models",
-    "\\server\\routers",
     "\\src",
     "\\src\\components",
     "\\src\\router",
     "\\src\\utils"
   ],
-  "SelectedNode": "\\src\\components\\ThirdStep.js",
+  "SelectedNode": "\\src\\components\\Experiment.js",
   "PreviewInSolutionExplorer": false
 }

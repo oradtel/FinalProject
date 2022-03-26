@@ -7,6 +7,8 @@ import ThirdStep from '../components/ThirdStep';
 import Disagree from '../components/Disagree';
 import Introduction from '../components/Introduction';
 import Instructions from '../components/Instructions';
+import Example from '../components/Example';
+import Experiment from '../components/Experiment';
 
 const AppRouter = () => {
     // we will store the user-entered data in each step in the user state that's an object.
@@ -22,6 +24,8 @@ const AppRouter = () => {
     const resetUser = () => {
         setUser({});
     };
+
+    var csv = require('jquery-csv');
 
     return (
         <BrowserRouter>
@@ -66,6 +70,24 @@ const AppRouter = () => {
                             <Disagree {...props} user={user} updateUser={updateUser} />
                         )}
                         path="/disagree"
+                    />
+                    <Route
+                        render={(props) => (
+                            <Instructions {...props} user={user} updateUser={updateUser} />
+                        )}
+                        path="/instructions"
+                    />
+                    <Route
+                        render={(props) => (
+                            <Example {...props} user={user} updateUser={updateUser} />
+                        )}
+                        path="/example"
+                    />
+                    <Route
+                        render={(props) => (
+                            <Experiment {...props} user={user} updateUser={updateUser} />
+                        )}
+                        path="/experiment"
                     />
                 </Switch>
             </div>
