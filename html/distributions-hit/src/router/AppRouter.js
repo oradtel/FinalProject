@@ -25,8 +25,6 @@ const AppRouter = () => {
         setUser({});
     };
 
-    var csv = require('jquery-csv');
-
     return (
         <BrowserRouter>
             <div className="container">

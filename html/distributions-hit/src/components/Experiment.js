@@ -3,15 +3,16 @@ import { useForm } from 'react-hook-form';
 import { Form, Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import ChartModel from './ChartModel';
-import $ from 'jquery-csv';
 
 const Experiment = (props) => {
 
     const { handleSubmit } = useForm({});
 
-    var data = $.csv.toObjects("../../amazon_headphones/amazon_headphones.csv");
+    let { PythonShell } = require('python-shell');
 
-    console.log(data[1]);
+    PythonShell.run("../../scripts/test.py", null, function (err, results) {
+        console.log(results);
+    })
 
     const data1 = [
         {
