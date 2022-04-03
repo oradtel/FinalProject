@@ -11,7 +11,7 @@ const Experiment = (props) => {
     const { handleSubmit } = useForm({});
 
     axios.post(`${BASE_API_URL}/experimentdata`, 1).then(res => {
-        console.log(res.data)
+        console.log(res.data);
     });
 
     const data1 = [

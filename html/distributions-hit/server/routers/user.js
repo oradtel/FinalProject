@@ -6,8 +6,10 @@ const bcrypt = require('bcryptjs');
 const router = express.Router();
 
 router.post('/experimentdata', (req, res) => {
-    res.send(getData());
-  })
+    var data = getData();
+    console.log(data);
+    res.send(data);
+  });
 
 router.post('/register', async (req, res) => {
     // We will be passing the data to this API in JSON format. The Express server makes it available inside the 
