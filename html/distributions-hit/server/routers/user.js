@@ -1,7 +1,13 @@
+const {getData} = require('../scripts/ExperimentData.js');
+
 const express = require('express');
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
+
+router.post('/experimentdata', (req, res) => {
+    res.send(getData());
+  })
 
 router.post('/register', async (req, res) => {
     // We will be passing the data to this API in JSON format. The Express server makes it available inside the 

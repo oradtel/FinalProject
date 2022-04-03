@@ -3,16 +3,16 @@ import { useForm } from 'react-hook-form';
 import { Form, Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import ChartModel from './ChartModel';
+import axios from 'axios';
+import { BASE_API_URL } from '../utils/constants';
 
 const Experiment = (props) => {
 
     const { handleSubmit } = useForm({});
 
-    let { PythonShell } = require('python-shell');
-
-    PythonShell.run("../../scripts/test.py", null, function (err, results) {
-        console.log(results);
-    })
+    axios.post(`${BASE_API_URL}/experimentdata`, 1).then(res => {
+        console.log(res.data)
+    });
 
     const data1 = [
         {
