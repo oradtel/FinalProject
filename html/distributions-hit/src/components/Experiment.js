@@ -3,41 +3,39 @@ import { useForm } from 'react-hook-form';
 import { Form, Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import ChartModel from './ChartModel';
-import axios from 'axios';
-import { BASE_API_URL } from '../utils/constants';
+import ExperimentModel from './ExperimentModel';
 
 const Experiment = (props) => {
-
+    var data1,data2;
     const { handleSubmit } = useForm({});
+    var expmodel= new ExperimentModel();
+    console.log(expmodel.getRow(1));
 
-    axios.post(`${BASE_API_URL}/experimentdata`, 1).then(res => {
-        console.log(res.data);
-    });
-
-    const data1 = [
+    
+    data1 = [
         {
             "name": "1 star",
-            "percentage": 1
+            "percentage": 2
         },
         {
             "name": "2 stars",
-            "percentage": 3
+            "percentage": 2
         },
         {
             "name": "3 stars",
-            "percentage": 9
+            "percentage": 2
         },
         {
             "name": "4 stars",
-            "percentage": 27
+            "percentage": 2
         },
         {
             "name": "5 stars",
-            "percentage": 60
+            "percentage": 2
         }
     ];
 
-    const data2 = [
+    data2 = [
         {
             "name": "1 star",
             "percentage": 0
@@ -59,7 +57,6 @@ const Experiment = (props) => {
             "percentage": 50
         }
     ];
-
     const onSubmit = (data) => {
         props.updateUser(data);
         props.history.push('/first');
