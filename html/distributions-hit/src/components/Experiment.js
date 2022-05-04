@@ -1,108 +1,142 @@
 import React from 'react';
+import { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { Form, Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import ChartModel from './ChartModel';
 import ExperimentModel from './ExperimentModel';
+import experimentService from './ExperimentService';
 
 const Experiment = (props) => {
-    var data1,data2;
+    var data1, data2;
     const { handleSubmit } = useForm({});
-    var expmodel= new ExperimentModel();
-    console.log(expmodel.getRow(1));
+    // const [expmodel, setExpmodel] = useState({});
+
+
+    useEffect(() => {
+        (async () => {
+            const data = await experimentService.getData();
+            console.log(10, data)
+            let rowFromService = await getMyRow(1, data);
+            console.log("3. this is rowFromService from getMyRow");
+            console.log(rowFromService);
+            data1 = [
+                {
+                    "name": "1 star",
+                    "percentage": rowFromService[0]
+                },
+                {
+                    "name": "2 stars",
+                    "percentage": rowFromService[1]
+                },
+                {
+                    "name": "3 stars",
+                    "percentage": rowFromService[2]
+                },
+                {
+                    "name": "4 stars",
+                    "percentage": rowFromService[3]
+                },
+                {
+                    "name": "5 stars",
+                    "percentage": rowFromService[4]
+                }
+            ];
+        
+            data2 = [
+                {
+                    "name": "1 star",
+                    "percentage": 0
+                },
+                {
+                    "name": "2 stars",
+                    "percentage": 10
+                },
+                {
+                    "name": "3 stars",
+                    "percentage": 1
+                },
+                {
+                    "name": "4 stars",
+                    "percentage": 39
+                },
+                {
+                    "name": "5 stars",
+                    "percentage": 50
+                }
+            ];
+        })();
+    }, [])
+
 
     
-    data1 = [
-        {
-            "name": "1 star",
-            "percentage": 2
-        },
-        {
-            "name": "2 stars",
-            "percentage": 2
-        },
-        {
-            "name": "3 stars",
-            "percentage": 2
-        },
-        {
-            "name": "4 stars",
-            "percentage": 2
-        },
-        {
-            "name": "5 stars",
-            "percentage": 2
-        }
-    ];
-
-    data2 = [
-        {
-            "name": "1 star",
-            "percentage": 0
-        },
-        {
-            "name": "2 stars",
-            "percentage": 10
-        },
-        {
-            "name": "3 stars",
-            "percentage": 1
-        },
-        {
-            "name": "4 stars",
-            "percentage": 39
-        },
-        {
-            "name": "5 stars",
-            "percentage": 50
-        }
-    ];
     const onSubmit = (data) => {
         props.updateUser(data);
         props.history.push('/first');
     };
 
+
+    const getMyRow = (rowNumber, data) => {
+        var row = [];
+
+        for (var i = 0; i < 5; i++) {
+            row.push(data[rowNumber][i]);
+        }
+        console.log("this is row from getMyRow");
+        console.log(row);
+        return row;
+    }
+
+
+
     return (
-        <Form className="input-form" onSubmit={handleSubmit(onSubmit)}>
-            <motion.div
-                className="col-md-6 offset-md-3"
-                initial={{ x: '-100vw' }}
-                animate={{ x: 0 }}
-                transition={{ stiffness: 150 }}
-            >
-                <Form.Group controlId="experiment">
-                    <Form.Label><h2><u>Experiment</u></h2></Form.Label>
-                    <Form.Text as="big">
-                        <p style={{ width: '1000px', textAlign: 'center', position: 'relative', right: '400px', color: 'black' }}>
-                            You are interested in buying a HEADPHONE and just found two models that fully comply with your requirements (and cost exactly the same).
-                        </p>
-                    </Form.Text>
-                </Form.Group>
-                <br />
-                <table style={{ width: '1000px', textAlign: 'center', position: 'relative', right: '700px', color: 'black' }}>
-                    <tr>
-                        <td><ChartModel data={data1} /></td>
-                        <td><ChartModel data={data2} /></td>
-                    </tr>
-                    <tr>
-                        <td><
-                            Button style={{ textAlign: 'center', position: 'relative', left: '50px' }} >
-                                This is my pick
-                            </Button>
-                        </td>
-                        <td>
-                            <Button style={{ textAlign: 'center', position: 'relative', left: '50px' }}>
-                                This is my pick
-                            </Button>
-                        </td>
-                    </tr>
-                </table>
-                <br /><br /><br />
-                <Button style={{ textAlign: 'center', position: 'relative' }} variant="primary" type="submit">
-                    Start Experiment
-                </Button>
-            </motion.div>
-        </Form>
+        <div>
+            <Form className="input-form" onSubmit={handleSubmit(onSubmit)}>
+                <motion.div
+                    className="col-md-6 offset-md-3"
+                    initial={{ x: '-100vw' }}
+                    animate={{ x: 0 }}
+                    transition={{ stiffness: 150 }}
+                >
+                    <Form.Group controlId="experiment">
+                        <Form.Label><h2><u>Experiment</u></h2></Form.Label>
+                        <Form.Text as="big">
+                            <p style={{ width: '100%', textAlign: 'center', position: 'relative', color: 'black' }}>
+                                You are interested in buying a HEADPHONE and just found two models that fully comply with your requirements (and cost exactly the same).
+                            </p>
+                        </Form.Text>
+                    </Form.Group>
+                    <br />
+                    <div style={{width: '100%', display: 'flex', justifyContent: "center"}}>
+
+                    <table style={{ width: '100%', textAlign: 'center', position: 'relative', color: 'black' }}>
+                        <tbody>
+                            <tr>
+                                <td><ChartModel data={data1} /></td>
+                                <td><ChartModel data={data2} /></td>
+                            </tr>
+                            <tr>
+                                <td><
+                                    Button style={{ textAlign: 'center', position: 'relative', left: '50px' }} >
+                                    This is my pick
+                                </Button>
+                                </td>
+                                <td>
+                                    <Button style={{ textAlign: 'center', position: 'relative', left: '50px' }}>
+                                        This is my pick
+                                    </Button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    <br /><br /><br />
+                    <Button style={{ textAlign: 'center', position: 'relative', transform: 'translateX(50%)' }} variant="primary" type="submit">
+                        Start Experiment
+                    </Button>
+                </motion.div>
+            </Form>
+        </div>
     );
 };
 

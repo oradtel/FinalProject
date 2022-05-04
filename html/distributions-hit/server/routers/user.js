@@ -5,10 +5,10 @@ const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
 
-router.get('/experimentdata', async (req, res) => {
-    var data = await getData();
+router.get('/experimentdata', (req, res) => {
+    var data = getData();
     console.log("user: " + data);
-    res.status(201).send(data);
+    res.send(data);
   });
 
 router.post('/register', async (req, res) => {

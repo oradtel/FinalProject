@@ -11,7 +11,7 @@ class ExperimentModel {
             console.log(err);
         }
     }
-    
+    ////parseInt(res_data[0][0].slice(0, -1))
     static getRow(rowNumber){
         var row=[];
         for (var i=0;i < 5;i++){

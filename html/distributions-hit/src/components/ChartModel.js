@@ -5,7 +5,7 @@ const ChartModel = (props) => {
     const { data } = props
 
     return (
-        <BarChart width={730} height={250} data={data}>
+        <BarChart width={500} height={250} data={data}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
