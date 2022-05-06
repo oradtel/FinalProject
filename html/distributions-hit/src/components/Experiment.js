@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { Form, Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import ChartModel from './ChartModel';
-import ExperimentModel from './ExperimentModel';
 import experimentService from './ExperimentService';
 
 const Experiment = (props) => {
@@ -20,55 +19,59 @@ const Experiment = (props) => {
             let rowFromService = await getMyRow(1, data);
             console.log("3. this is rowFromService from getMyRow");
             console.log(rowFromService);
-            data1 = [
-                {
-                    "name": "1 star",
-                    "percentage": rowFromService[0]
-                },
-                {
-                    "name": "2 stars",
-                    "percentage": rowFromService[1]
-                },
-                {
-                    "name": "3 stars",
-                    "percentage": rowFromService[2]
-                },
-                {
-                    "name": "4 stars",
-                    "percentage": rowFromService[3]
-                },
-                {
-                    "name": "5 stars",
-                    "percentage": rowFromService[4]
-                }
-            ];
-        
-            data2 = [
-                {
-                    "name": "1 star",
-                    "percentage": 0
-                },
-                {
-                    "name": "2 stars",
-                    "percentage": 10
-                },
-                {
-                    "name": "3 stars",
-                    "percentage": 1
-                },
-                {
-                    "name": "4 stars",
-                    "percentage": 39
-                },
-                {
-                    "name": "5 stars",
-                    "percentage": 50
-                }
-            ];
+            setData(rowFromService);
+            console.log("This is data1");
+            console.log(data1);
         })();
     }, [])
 
+    function setData(rowFromService) {
+        data1 = [
+            {
+                "name": "1 star",
+                "percentage": rowFromService[0]
+            },
+            {
+                "name": "2 stars",
+                "percentage": rowFromService[1]
+            },
+            {
+                "name": "3 stars",
+                "percentage": rowFromService[2]
+            },
+            {
+                "name": "4 stars",
+                "percentage": rowFromService[3]
+            },
+            {
+                "name": "5 stars",
+                "percentage": rowFromService[4]
+            }
+        ];
 
+        data2 = [
+            {
+                "name": "1 star",
+                "percentage": 0
+            },
+            {
+                "name": "2 stars",
+                "percentage": 10
+            },
+            {
+                "name": "3 stars",
+                "percentage": 1
+            },
+            {
+                "name": "4 stars",
+                "percentage": 39
+            },
+            {
+                "name": "5 stars",
+                "percentage": 50
+            }
+        ];
+    }
     
     const onSubmit = (data) => {
         props.updateUser(data);
@@ -80,7 +83,7 @@ const Experiment = (props) => {
         var row = [];
 
         for (var i = 0; i < 5; i++) {
-            row.push(data[rowNumber][i]);
+            row.push(parseInt(data[rowNumber][i].slice(0, -1)));
         }
         console.log("this is row from getMyRow");
         console.log(row);
