@@ -7,70 +7,76 @@ import ChartModel from './ChartModel';
 import experimentService from './ExperimentService';
 
 const Experiment = (props) => {
-    var data1, data2;
+    var tmpData1, tmpData2;
+    const [data1, setData1] = useState(0);
+    const [data2, setData2] = useState(0);
     const { handleSubmit } = useForm({});
-    // const [expmodel, setExpmodel] = useState({});
 
 
     useEffect(() => {
         (async () => {
             const data = await experimentService.getData();
-            console.log(10, data)
-            let rowFromService = await getMyRow(1, data);
-            console.log("3. this is rowFromService from getMyRow");
-            console.log(rowFromService);
-            setData(rowFromService);
-            console.log("This is data1");
-            console.log(data1);
+            //console.log(10, data)
+            let rowFromService1 = await getMyRow(1, data);
+            let rowFromService2 = await getMyRow(2, data);
+            //console.log("3. this is rowFromService from getMyRow");
+            //console.log(rowFromService);
+            setData(rowFromService1, rowFromService2);
+            //console.log("This is data1");
+            //console.log(data1);
         })();
     }, [])
 
-    function setData(rowFromService) {
-        data1 = [
+    function setData(rowFromService1, rowFromService2) {
+        tmpData1 = [
             {
                 "name": "1 star",
-                "percentage": rowFromService[0]
+                "percentage": rowFromService1[0]
             },
             {
                 "name": "2 stars",
-                "percentage": rowFromService[1]
+                "percentage": rowFromService1[1]
             },
             {
                 "name": "3 stars",
-                "percentage": rowFromService[2]
+                "percentage": rowFromService1[2]
             },
             {
                 "name": "4 stars",
-                "percentage": rowFromService[3]
+                "percentage": rowFromService1[3]
             },
             {
                 "name": "5 stars",
-                "percentage": rowFromService[4]
+                "percentage": rowFromService1[4]
             }
         ];
 
-        data2 = [
+        setData1(tmpData1);
+
+        tmpData2 = [
             {
                 "name": "1 star",
-                "percentage": 0
+                "percentage": rowFromService2[0]
             },
             {
                 "name": "2 stars",
-                "percentage": 10
+                "percentage": rowFromService2[1]
             },
             {
                 "name": "3 stars",
-                "percentage": 1
+                "percentage": rowFromService2[2]
             },
             {
                 "name": "4 stars",
-                "percentage": 39
+                "percentage": rowFromService2[3]
             },
             {
                 "name": "5 stars",
-                "percentage": 50
+                "percentage": rowFromService2[4]
             }
         ];
+
+        setData2(tmpData2);
     }
     
     const onSubmit = (data) => {
@@ -90,7 +96,7 @@ const Experiment = (props) => {
         return row;
     }
 
-
+    console.log("return");
 
     return (
         <div>
