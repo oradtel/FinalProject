@@ -99,7 +99,7 @@ const Experiment10 = (props) => {
         event.preventDefault();
 
         try {
-            const { expData } = props;
+            const { user } = props;
             var choice;
             if (isPicked1.picked){
                 choice={choicePicked10:ID1,choiceNotPicked10:ID2};
@@ -109,15 +109,15 @@ const Experiment10 = (props) => {
             const updatedData = choice;
 
             // we're passing the data to the /register API in the JSON format.
-            await axios.post(`${BASE_API_URL}/exp`, {
-                ...expData,
+            await axios.post(`${BASE_API_URL}/register`, {
+                ...user,
                 ...updatedData
             });
 
             Swal.fire('Awesome!', "You're successfully did it!", 'success').then(
                 (result) => {
                     if (result.isConfirmed || result.isDismissed) {
-                        props.resetExpData();
+                        props.resetUser();
                         props.history.push('/first');
                     }
                 }

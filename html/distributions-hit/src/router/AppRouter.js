@@ -35,19 +35,19 @@ const AppRouter = () => {
     };
 
 
-    // we will store the user-entered data in each step in the user state that's an object.
-    const [expData, setExpData] = useState({});
+    // // we will store the user-entered data in each step in the user state that's an object.
+    // const [expData, setExpData] = useState({});
 
-    // we're passing data to update the user state
-    const updateExpData = (data) => {
-        // we're first spreading out the user object values using the prevUser variable and then spreading out the data 
-        // object so the resulting object will be the merging of two objects.
-        setExpData((prevExpData) => ({ ...prevExpData, ...data }));
-    };
+    // // we're passing data to update the user state
+    // const updateExpData = (data) => {
+    //     // we're first spreading out the user object values using the prevUser variable and then spreading out the data 
+    //     // object so the resulting object will be the merging of two objects.
+    //     setExpData((prevExpData) => ({ ...prevExpData, ...data }));
+    // };
 
-    const resetExpData = () => {
-        setExpData({});
-    };
+    // const resetExpData = () => {
+    //     setExpData({});
+    // };
 
 
     return (
@@ -108,61 +108,61 @@ const AppRouter = () => {
                     />
                     <Route
                         render={(props) => (
-                            <Experiment {...props} expData={expData} updateExpData={updateExpData} />
+                            <Experiment {...props} user={user} updateUser={updateUser} />
                         )}
                         path="/experiment"
                     />
                     <Route
                         render={(props) => (
-                            <Experiment2 {...props} expData={expData} updateExpData={updateExpData} />
+                            <Experiment2 {...props} user={user} updateUser={updateUser} />
                         )}
                         path="/experiment2"
                     />
                     <Route
                         render={(props) => (
-                            <Experiment3 {...props} expData={expData} updateExpData={updateExpData} />
+                            <Experiment3 {...props} user={user} updateUser={updateUser} />
                         )}
                         path="/experiment3"
                     />
                     <Route
                         render={(props) => (
-                            <Experiment4 {...props} expData={expData} updateExpData={updateExpData} />
+                            <Experiment4 {...props} user={user} updateUser={updateUser} />
                         )}
                         path="/experiment4"
                     />
                     <Route
                         render={(props) => (
-                            <Experiment5 {...props} expData={expData} updateExpData={updateExpData} />
+                            <Experiment5 {...props} user={user} updateUser={updateUser} />
                         )}
                         path="/experiment5"
                     />
                     <Route
                         render={(props) => (
-                            <Experiment6 {...props} expData={expData} updateExpData={updateExpData} />
+                            <Experiment6 {...props} user={user} updateUser={updateUser} />
                         )}
                         path="/experiment6"
                     />
                     <Route
                         render={(props) => (
-                            <Experiment7 {...props} expData={expData} updateExpData={updateExpData} />
+                            <Experiment7 {...props} user={user} updateUser={updateUser} />
                         )}
                         path="/experiment7"
                     />
                     <Route
                         render={(props) => (
-                            <Experiment8 {...props} expData={expData} updateExpData={updateExpData} />
+                            <Experiment8 {...props} user={user} updateUser={updateUser} />
                         )}
                         path="/experiment8"
                     />
                     <Route
                         render={(props) => (
-                            <Experiment9 {...props} expData={expData} updateExpData={updateExpData} />
+                            <Experiment9 {...props} user={user} updateUser={updateUser} />
                         )}
                         path="/experiment9"
                     />
                     <Route
                         render={(props) => (
-                            <Experiment10 {...props} expData={expData} updateExpData={updateExpData} />
+                            <Experiment10 {...props} user={user} updateUser={updateUser} />
                         )}
                         path="/experiment10"
                     />

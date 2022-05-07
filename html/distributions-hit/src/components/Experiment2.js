@@ -100,7 +100,7 @@ const Experiment2 = (props) => {
             choice={choicePicked2:ID2,choiceNotPicked2:ID1};
         }
         console.log(choice);
-        props.updateExpData(choice);
+        props.updateUser(choice);
         props.history.push('/experiment3');
     };
 

@@ -123,18 +123,19 @@ const ThirdStep = (props) => {
                 state:
                     states.find((state) => state.isoCode === selectedState)?.name || '',
                 city: selectedCity
+                
             };
+            props.updateUser(updatedData)
 
-            // we're passing the data to the /register API in the JSON format.
-            await axios.post(`${BASE_API_URL}/register`, {
-                ...user,
-                ...updatedData
-            });
+            // // we're passing the data to the /register API in the JSON format.
+            // await axios.post(`${BASE_API_URL}/register`, {
+            //     ...user,
+            //     ...updatedData
+            // });
 
             Swal.fire('Awesome!', "You're successfully registered!", 'success').then(
                 (result) => {
                     if (result.isConfirmed || result.isDismissed) {
-                        props.resetUser();
                         props.history.push('/instructions');
                     }
                 }
