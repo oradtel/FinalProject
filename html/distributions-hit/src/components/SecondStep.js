@@ -22,6 +22,7 @@ const SecondStep = (props) => {
 
     // for the push method, we've provided the route to which we need to redirect.
     const onSubmit = (data) => {
+        console.log(data);
         props.updateUser(data);
         props.history.push('/third');
     };

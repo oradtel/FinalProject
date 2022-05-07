@@ -5,12 +5,8 @@ import { Form, Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import ChartModel from './ChartModel';
 import experimentService from './ExperimentService';
-import axios from 'axios';
-import { BASE_API_URL } from '../utils/constants';
-import Swal from 'sweetalert2';
 
-
-const Experiment = (props) => {
+const Experiment8 = (props) => {
     const isPicked1 = {
         picked: 0
     };
@@ -25,22 +21,18 @@ const Experiment = (props) => {
     useEffect(() => {
         (async () => {
             const data = await experimentService.getData();
-            console.log(10, data)
-            let rowFromService1 = await getMyRow(1, data);
-            let rowFromService2 = await getMyRow(2, data);
-            console.log("3. this is rowFromService from getMyRow");
-            console.log(rowFromService1);
-            console.log(rowFromService2);
+            //console.log(10, data)
+            let rowFromService1 = await getMyRow(15, data);
+            let rowFromService2 = await getMyRow(16, data);
             var rowID1=rowFromService1[5];
             var rowID2=rowFromService2[5];
             setID1(rowID1);
             setID2(rowID2);
-            // console.log(rowID1);
-            // console.log(rowID2);
-
+            //console.log("3. this is rowFromService from getMyRow");
+            //console.log(rowFromService);
             setData(rowFromService1, rowFromService2);
             //console.log("This is data1");
-            console.log(data1);
+            //console.log(data1);
         })();
     }, [])
 
@@ -99,12 +91,12 @@ const Experiment = (props) => {
     const onSubmit = (data) => {
         var choice;
         if (isPicked1.picked){
-            choice={choicePicked1:ID1,choiceNotPicked1:ID2};
+            choice={choicePicked8:ID1,choiceNotPicked8:ID2};
         }else{
-            choice={choicePicked1:ID2,choiceNotPicked1:ID1};
+            choice={choicePicked8:ID2,choiceNotPicked8:ID1};
         }
         props.updateExpData(choice);
-        props.history.push('/experiment2');
+        props.history.push('/experiment9');
     };
 
 
@@ -124,7 +116,7 @@ const Experiment = (props) => {
     console.log("return");
 
     return (
-        <div className="Experiment">
+        <div>
             <Form className="input-form" onSubmit={handleSubmit(onSubmit)}>
                 <motion.div
                     className="col-md-6 offset-md-3"
@@ -150,7 +142,8 @@ const Experiment = (props) => {
                                 <td><ChartModel data={data2} /></td>
                             </tr>
                             <tr>
-                                <td><Button style={{ textAlign: 'center', position: 'relative', left: '50px'}} variant="primary" type="submit" onClick={() => (isPicked1.picked = 1)}>
+                                <td><
+                                    Button style={{ textAlign: 'center', position: 'relative', left: '50px' }} variant="primary" type="submit" onClick={() => (isPicked1.picked = 1)}>
                                     This is my pick
                                 </Button>
                                 </td>
@@ -165,9 +158,8 @@ const Experiment = (props) => {
                     </div>
                 </motion.div>
             </Form>
-
         </div>
     );
 };
 
-export default Experiment;
+export default Experiment8;

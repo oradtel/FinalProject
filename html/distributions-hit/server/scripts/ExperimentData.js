@@ -6,7 +6,7 @@ function csvToString(){
 }
 function getData() {
     csvData=csvToString();
-    var csvLines=csvData.split('\r\n');
+    var csvLines=csvData.split('\n');
     var finalData=[];
     for (var i=0;i<csvLines.length;i++) {
         var tempData=csvLines[i].split(',');
