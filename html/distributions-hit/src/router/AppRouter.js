@@ -23,12 +23,19 @@ import Feedback from '../components/Feedback';
 const AppRouter = () => {
     // we will store the user-entered data in each step in the user state that's an object.
     const [user, setUser] = useState({});
+    const [register=true, setRegister] = useState({});
+
 
     // we're passing data to update the user state
     const updateUser = (data) => {
         // we're first spreading out the user object values using the prevUser variable and then spreading out the data 
         // object so the resulting object will be the merging of two objects.
         setUser((prevUser) => ({ ...prevUser, ...data }));
+    };
+    const updateRegister = (data) => {
+        // we're first spreading out the user object values using the prevUser variable and then spreading out the data 
+        // object so the resulting object will be the merging of two objects.
+        setRegister(data);
     };
 
     const resetUser = () => {
@@ -50,15 +57,23 @@ const AppRouter = () => {
     //     setExpData({});
     // };
 
+    // function currentHeader(props) {
+    //     const isRegister = props.isRegister;
+    //     if (isRegister) {
+    //       return <Header />;
+    //     }
+    //     return;
+    //   }
+
 
     return (
         <BrowserRouter>
             <div className="container">
-                <Header />
+                {register && <Header />}
                 <Switch>
                     <Route
                         render={(props) => (
-                            <Introduction {...props} user={user} updateUser={updateUser} />
+                            <Introduction {...props} user={user} register={register} updateRegister={updateRegister} updateUser={updateUser} />
                         )}
                         path="/"
                         exact={true}
@@ -95,9 +110,11 @@ const AppRouter = () => {
                     />
                     <Route
                         render={(props) => (
-                            <Instructions {...props} user={user} updateUser={updateUser} />
+                            <Instructions {...props} user={user} register={register} updateRegister={updateRegister} updateUser={updateUser} />
+                            
                         )}
                         path="/instructions"
+                        
                     />
                     <Route
                         render={(props) => (

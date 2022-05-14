@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
 import ReCaptchaV2 from 'react-google-recaptcha'
+import grecaptcha from 'react-google-recaptcha'
 
 const ThirdStep = (props) => {
     // countries, states and cities are declared in the state that will store the list of countries, states and cities, respectively, coming from the API
@@ -22,7 +23,7 @@ const ThirdStep = (props) => {
     const [selectedState, setSelectedState] = useState('');
     const [selectedCity, setSelectedCity] = useState('');
 
-    let token = '';
+    var token = false;
 
     // make an API call to get the list of countries
     // we've passed an empty array [] as the second argument to the useEffect hook so the hook will be called only once when the component is mounted.
@@ -102,14 +103,13 @@ const ThirdStep = (props) => {
         getCities();
     }, [selectedState]);
 
-    const handleToken = (newToken) => {
-        token = newToken;
-    }
-
-    const handleExpire = () => {
-        token = null;
-    }
-
+    var onloadCallback = function() {
+        var v = grecaptcha.getResponse();
+        console.log("v");
+      };
+    var correctCaptcha = function(response) {
+        alert(response);
+    };
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -132,14 +132,22 @@ const ThirdStep = (props) => {
             //     ...user,
             //     ...updatedData
             // });
-
-            Swal.fire('Awesome!', "You're successfully registered!", 'success').then(
-                (result) => {
-                    if (result.isConfirmed || result.isDismissed) {
-                        props.history.push('/instructions');
+            if (token)
+            {
+                Swal.fire('Awesome!', "You're successfully registered!", 'success').then(
+                    (result) => {
+                        if (result.isConfirmed || result.isDismissed) {
+                            props.history.push('/instructions');
+                        }
                     }
-                }
-            );
+                );
+            }
+            else{
+                Swal.fire('Oops...', "Please try again", 'error').then(
+                    (result) => {
+                    }
+                );
+            }
 
         } catch (error) {
             if (error.response) {
@@ -219,12 +227,11 @@ const ThirdStep = (props) => {
                             )}
                     </Form.Control>
                 </Form.Group>
-
                 <ReCaptchaV2
                     sitekey={"6Lf7BPMeAAAAAI1_rSyeemtjtmSrxun_mIavhFNB"}
-                    onChange={handleToken}
-                    onExpire={handleExpire}
+                    onLoad={onloadCallback}
                 />
+
                 <Button variant="primary" type="submit">
                     Register
                 </Button>

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 const Introduction = (props) => {
 
     const { register, handleSubmit, errors } = useForm({});
-
+    props.updateRegister(true);
     const onSubmit = (data) => {
         props.updateUser(data);
         props.history.push('/first');

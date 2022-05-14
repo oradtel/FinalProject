@@ -7,7 +7,7 @@ import ChartModel from './ChartModel';
 const Instructions = (props) => {
 
     const { handleSubmit } = useForm({});
-
+    props.updateRegister(false);
     const data1 = [
         {
             "name": "1 star",
