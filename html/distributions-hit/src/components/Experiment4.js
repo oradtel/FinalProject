@@ -125,9 +125,9 @@ const Experiment4 = (props) => {
                     transition={{ stiffness: 150 }}
                 >
                     <Form.Group controlId="experiment">
-                        <Form.Label><h2><u>Experiment</u></h2></Form.Label>
+                    <Form.Label style={{ width: '100%',left: '27%', display: 'flex', textAlign: 'center', position: 'relative'}}><h2><u>Experiment #4</u></h2></Form.Label>
                         <Form.Text as="big">
-                            <p style={{ width: '100%', textAlign: 'center', position: 'relative', color: 'black' }}>
+                            <p style={{ width: '200%',right: '45%', position: 'relative', color: 'black' }}>
                                 You are interested in buying a HEADPHONE and just found two models that fully comply with your requirements (and cost exactly the same).
                             </p>
                         </Form.Text>

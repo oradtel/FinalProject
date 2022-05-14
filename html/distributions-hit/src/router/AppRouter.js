@@ -18,6 +18,7 @@ import Experiment7 from '../components/Experiment7';
 import Experiment8 from '../components/Experiment8';
 import Experiment9 from '../components/Experiment9';
 import Experiment10 from '../components/Experiment10';
+import Feedback from '../components/Feedback';
 
 const AppRouter = () => {
     // we will store the user-entered data in each step in the user state that's an object.
@@ -82,9 +83,7 @@ const AppRouter = () => {
                             <ThirdStep
                                 {...props}
                                 user={user}
-                                updateUser={updateUser}
-                                resetUser={resetUser}
-                            />
+                                updateUser={updateUser}                            />
                         )}
                         path="/third"
                     />
@@ -165,6 +164,12 @@ const AppRouter = () => {
                             <Experiment10 {...props} user={user} updateUser={updateUser} />
                         )}
                         path="/experiment10"
+                    />
+                    <Route
+                        render={(props) => (
+                            <Feedback {...props} user={user} updateUser={updateUser} resetUser={resetUser} />
+                        )}
+                        path="/feedback"
                     />
                 </Switch>
             </div>

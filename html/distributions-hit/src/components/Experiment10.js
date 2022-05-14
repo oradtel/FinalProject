@@ -19,7 +19,7 @@ const Experiment10 = (props) => {
     const [data2, setData2] = useState(0);
     const [ID1, setID1] = useState(0);
     const [ID2, setID2] = useState(0);
-    // const { handleSubmit } = useForm({});
+    const { handleSubmit } = useForm({});
 
 
     useEffect(() => {
@@ -94,46 +94,17 @@ const Experiment10 = (props) => {
         setData2(tmpData2);
     }
     
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        try {
-            const { user } = props;
-            var choice;
-            if (isPicked1.picked){
-                choice={choicePicked10:ID1,choiceNotPicked10:ID2};
-            }else{
-                choice={choicePicked10:ID2,choiceNotPicked10:ID1};
-            }
-            const updatedData = choice;
-
-            // we're passing the data to the /register API in the JSON format.
-            await axios.post(`${BASE_API_URL}/register`, {
-                ...user,
-                ...updatedData
-            });
-
-            Swal.fire('Awesome!', "You're successfully did it!", 'success').then(
-                (result) => {
-                    if (result.isConfirmed || result.isDismissed) {
-                        props.resetUser();
-                        props.history.push('/first');
-                    }
-                }
-            );
-
-        } catch (error) {
-            if (error.response) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: error.response.data
-                });
-                console.log('error', error.response.data);
-            }
+    const onSubmit = (data) => {
+        var choice;
+        if (isPicked1.picked){
+            choice={choicePicked10:ID1,choiceNotPicked10:ID2};
+        }else{
+            choice={choicePicked10:ID2,choiceNotPicked10:ID1};
         }
+        props.updateUser(choice);
+        props.history.push('/feedback');
     };
+    
 
     const getMyRow = (rowNumber, data) => {
         var row = [];
@@ -152,7 +123,7 @@ const Experiment10 = (props) => {
 
     return (
         <div>
-            <Form className="input-form" onSubmit={handleSubmit}>
+            <Form className="input-form" onSubmit={handleSubmit(onSubmit)}>
                 <motion.div
                     className="col-md-6 offset-md-3"
                     initial={{ x: '-100vw' }}
@@ -160,9 +131,9 @@ const Experiment10 = (props) => {
                     transition={{ stiffness: 150 }}
                 >
                     <Form.Group controlId="experiment">
-                        <Form.Label><h2><u>Experiment</u></h2></Form.Label>
+                    <Form.Label style={{ width: '100%',left: '27%', display: 'flex', textAlign: 'center', position: 'relative'}}><h2><u>Experiment #10</u></h2></Form.Label>
                         <Form.Text as="big">
-                            <p style={{ width: '100%', textAlign: 'center', position: 'relative', color: 'black' }}>
+                            <p style={{ width: '200%',right: '45%', position: 'relative', color: 'black' }}>
                                 You are interested in buying a HEADPHONE and just found two models that fully comply with your requirements (and cost exactly the same).
                             </p>
                         </Form.Text>

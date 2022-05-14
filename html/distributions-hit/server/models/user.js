@@ -42,7 +42,7 @@ const userSchema = mongoose.Schema(
             trim: true
         },
         choiceNotPicked1: {
-            type: Number,
+            type: String,
             required: true,
             trim: true
         },
@@ -52,7 +52,7 @@ const userSchema = mongoose.Schema(
             trim: true
         },
         choiceNotPicked2: {
-            type: Number,
+            type: String,
             required: true,
             trim: true
         },
@@ -62,7 +62,7 @@ const userSchema = mongoose.Schema(
             trim: true
         },
         choiceNotPicked3: {
-            type: Number,
+            type: String,
             required: true,
             trim: true
         },
@@ -72,7 +72,7 @@ const userSchema = mongoose.Schema(
             trim: true
         },
         choiceNotPicked4: {
-            type: Number,
+            type: String,
             required: true,
             trim: true
         },
@@ -82,7 +82,7 @@ const userSchema = mongoose.Schema(
             trim: true
         },
         choiceNotPicked5: {
-            type: Number,
+            type: String,
             required: true,
             trim: true
         },
@@ -92,7 +92,7 @@ const userSchema = mongoose.Schema(
             trim: true
         },
         choiceNotPicked6: {
-            type: Number,
+            type: String,
             required: true,
             trim: true
         },
@@ -102,7 +102,7 @@ const userSchema = mongoose.Schema(
             trim: true
         },
         choiceNotPicked7: {
-            type: Number,
+            type: String,
             required: true,
             trim: true
         },
@@ -112,7 +112,7 @@ const userSchema = mongoose.Schema(
             trim: true
         },
         choiceNotPicked8: {
-            type: Number,
+            type: String,
             required: true,
             trim: true
         },
@@ -122,7 +122,7 @@ const userSchema = mongoose.Schema(
             trim: true
         },
         choiceNotPicked9: {
-            type: Number,
+            type: String,
             required: true,
             trim: true
         },
@@ -132,7 +132,32 @@ const userSchema = mongoose.Schema(
             trim: true
         },
         choiceNotPicked10: {
-            type: Number,
+            type: String,
+            required: true,
+            trim: true
+        },
+        considerations: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        choice_affect: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        average_ratings: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        useful_information: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        technical_issues: {
+            type: String,
             required: true,
             trim: true
         }

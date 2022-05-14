@@ -68,24 +68,27 @@ const Instructions = (props) => {
                 transition={{ stiffness: 150 }}
             >
                 <Form.Group controlId="instructions">
-                    <Form.Label><h2><u>Instructions</u></h2></Form.Label>
+                    <Form.Label style={{ width: '100%',left: '27%', display: 'flex', textAlign: 'center', position: 'relative'}}><h2><u>Instructions</u></h2></Form.Label>
                     <Form.Text as="big">
-                        <p style={{ width: '1000px', textAlign: 'center', position: 'relative', right: '400px', color: 'black' }}>
+                        <p style={{ width: '200%',right: '45%', display: 'flex', textAlign: 'left', position: 'relative', color: 'black' }}>
                             You are interested in buying a printer and just found two models that fully comply with your requirements (and cost exactly the same).
                         </p>
-                        <ul style={{ width: '1000px', position: 'relative', right: '400px', color: 'black' }}><b>Dear participant</b>,
+                        <ul style={{ width: '200%',right: '45%', position: 'relative', color: 'black' }}><b>Dear participant</b>,
                             <li>The user ratings of the two printers are given below.</li>
                             <li>Please check carefully the ratings and let us know (by clicking the corresponding button) which you would probably pick should you be in such decision situation.</li>
                         </ul>
-                        <p style={{ width: '1000px', textAlign: 'center', position: 'relative', right: '400px', color: 'black' }}>
+                        <p style={{ width: '200%',right: '45%', textAlign: 'center', position: 'relative',  color: 'black' }}>
                             Example:
                         </p>
                     </Form.Text>
                 </Form.Group>
-                <table style={{ width: '1000px', textAlign: 'center', position: 'relative', right: '640px', color: 'black' }}>
+                <br></br>
+                <div style={{width: '100%', display: 'flex', justifyContent: "center"}}>
+
+                <table style={{ width: '100%', textAlign: 'center', position: 'relative', color: 'black' }}>
                     <tr>
-                        <td><ChartModel data={data1} /></td>
-                        <td><ChartModel data={data2} /></td>
+                        <td style={{ width: '30%', textAlign: 'center', position: 'relative', color: 'black' }}><ChartModel data={data1} /></td>
+                        <td style={{ width: '30%', textAlign: 'center', position: 'relative', color: 'black' }}><ChartModel data={data2} /></td>
                     </tr>
                     <tr>
                         <td><
@@ -100,6 +103,8 @@ const Instructions = (props) => {
                         </td>
                     </tr>
                 </table>
+                </div>
+
             </motion.div>
         </Form>
     );
