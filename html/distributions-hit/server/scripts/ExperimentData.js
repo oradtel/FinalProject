@@ -12,12 +12,17 @@ function getData() {
         var tempData=csvLines[i].split(',');
         finalData.push(tempData);
     }
-    var randRow=generateRandom(1,180);
-    var randomData=[];
-    for (var i=randRow;i<randRow+20;i++){
-        randomData.push(finalData[i]);
-    }
-    return randomData;
+    // Shuffle array
+    const shuffled = finalData.sort(() => 0.5 - Math.random());
+
+    // Get sub-array of first n elements after shuffled
+    let selected = shuffled.slice(0, 20);
+    // var randRow=generateRandom(1,180);
+    // var randomData=[];
+    // for (var i=randRow;i<randRow+20;i++){
+    //     randomData.push(finalData[i]);
+    // }
+    return selected;
 }
 
 function generateRandom(min = 0, max = 100) {
