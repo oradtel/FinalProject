@@ -23,7 +23,7 @@ const ThirdStep = (props) => {
     const [selectedState, setSelectedState] = useState('');
     const [selectedCity, setSelectedCity] = useState('');
 
-    var token = false;
+    var isVerified = false;
 
     // make an API call to get the list of countries
     // we've passed an empty array [] as the second argument to the useEffect hook so the hook will be called only once when the component is mounted.
@@ -103,9 +103,9 @@ const ThirdStep = (props) => {
         getCities();
     }, [selectedState]);
 
-    var onloadCallback = function() {
-        var v = grecaptcha.getResponse();
-        console.log("v");
+    var onloadCallback = function(val) {
+        console.log(val);
+        isVerified = true;
       };
     var correctCaptcha = function(response) {
         alert(response);
@@ -132,7 +132,7 @@ const ThirdStep = (props) => {
             //     ...user,
             //     ...updatedData
             // });
-            if (token)
+            if (isVerified)
             {
                 Swal.fire('Awesome!', "You're successfully registered!", 'success').then(
                     (result) => {
@@ -227,12 +227,13 @@ const ThirdStep = (props) => {
                             )}
                     </Form.Control>
                 </Form.Group>
+                
                 <ReCaptchaV2
                     sitekey={"6Lf7BPMeAAAAAI1_rSyeemtjtmSrxun_mIavhFNB"}
-                    onLoad={onloadCallback}
+                    onChange={onloadCallback}
                 />
 
-                <Button variant="primary" type="submit">
+                <Button disabled={isVerified} variant="primary" type="submit">
                     Register
                 </Button>
             </motion.div>
