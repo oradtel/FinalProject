@@ -22,6 +22,7 @@ function getData() {
     // for (var i=randRow;i<randRow+20;i++){
     //     randomData.push(finalData[i]);
     // }
+
     return selected;
 }
 

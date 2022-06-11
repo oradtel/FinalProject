@@ -5,9 +5,13 @@ const User = require('../models/user');
 const expModel = require('../models/expModel');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
-
+var timeStart,timeDone;
 router.get('/experimentdata', (req, res) => {
     var data = getData();
+    const d = new Date();
+    const seconds = 1000 * 60 * 60;
+    timeStart = Date.now();
+    // console.log("timeStart: " + timeStart);
     //console.log("user: " + data);
     res.send(data);
   });
@@ -25,22 +29,32 @@ router.post('/register', async (req, res) => {
     //if (user) {
      //   return res.status(400).send('User with the provided email already exist.');
     //}
+    const d = new Date();
+    const seconds = 1000 * 60 * 60;
+    timeDone = Date.now();
+    // console.log("timeDone: " + timeDone);
+    // console.log("gam vegam: " + Math.floor((timeDone - timeStart) / 1000));
+    var timeTaken=Math.floor((timeDone - timeStart) / 1000);
+    if (timeTaken > 75) {
+        try {
+            // we pass all the user data (like first_name, last_name, user_email, users_password, country, state and city)
+            // which is present in the req.body to the User constructor 
+            user = new User(req.body);
+            // hash the password before saving it to the database
+            //user.user_password = await bcrypt.hash(user_password, 8);
 
-    try {
-        // we pass all the user data (like first_name, last_name, user_email, users_password, country, state and city)
-        // which is present in the req.body to the User constructor 
-        user = new User(req.body);
-        // hash the password before saving it to the database
-        //user.user_password = await bcrypt.hash(user_password, 8);
-
-        // save all the details along with hashed password into the MongoDB database.
-        await user.save();
-        // Once we're done, we're sending back the response with the status code of 201 which describes that 
-        // something has been created.
+            // save all the details along with hashed password into the MongoDB database.
+            await user.save();
+            // Once we're done, we're sending back the response with the status code of 201 which describes that 
+            // something has been created.
+            res.status(201).send();
+        } catch (e) {
+            res.status(500).send('Something went wrong. Try again later.');
+            console.log(e);
+        }
+    }
+    else {
         res.status(201).send();
-    } catch (e) {
-        res.status(500).send('Something went wrong. Try again later.');
-        console.log(e);
     }
 });
 
