@@ -26,8 +26,8 @@ const Experiment5 = (props) => {
             let rowFromService2 = await getMyRow(10, data);
             var rowID1=rowFromService1[5];
             var rowID2=rowFromService2[5];
-            setID1(rowID1);
-            setID2(rowID2);
+            setID1("correct");
+            setID2("wrong");
             //console.log("3. this is rowFromService from getMyRow");
             //console.log(rowFromService);
             setData(rowFromService1, rowFromService2);
@@ -36,27 +36,34 @@ const Experiment5 = (props) => {
         })();
     }, [])
 
+    useEffect(() => {
+        window.addEventListener("popstate", e => {
+            // Nope, go back to your page
+            props.history.go(1);
+        });
+    }, []);
+
     function setData(rowFromService1, rowFromService2) {
         tmpData1 = [
             {
                 "name": "1 star",
-                "percentage": rowFromService1[0]
+                "percentage": 0
             },
             {
                 "name": "2 stars",
-                "percentage": rowFromService1[1]
+                "percentage": 0
             },
             {
                 "name": "3 stars",
-                "percentage": rowFromService1[2]
+                "percentage": 4
             },
             {
                 "name": "4 stars",
-                "percentage": rowFromService1[3]
+                "percentage": 6
             },
             {
                 "name": "5 stars",
-                "percentage": rowFromService1[4]
+                "percentage": 90
             }
         ];
 
@@ -65,23 +72,23 @@ const Experiment5 = (props) => {
         tmpData2 = [
             {
                 "name": "1 star",
-                "percentage": rowFromService2[0]
+                "percentage": 10
             },
             {
                 "name": "2 stars",
-                "percentage": rowFromService2[1]
+                "percentage": 78
             },
             {
                 "name": "3 stars",
-                "percentage": rowFromService2[2]
+                "percentage": 6
             },
             {
                 "name": "4 stars",
-                "percentage": rowFromService2[3]
+                "percentage": 6
             },
             {
                 "name": "5 stars",
-                "percentage": rowFromService2[4]
+                "percentage": 0
             }
         ];
 

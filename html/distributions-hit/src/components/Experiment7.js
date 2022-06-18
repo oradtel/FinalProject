@@ -36,6 +36,13 @@ const Experiment7 = (props) => {
         })();
     }, [])
 
+    useEffect(() => {
+        window.addEventListener("popstate", e => {
+            // Nope, go back to your page
+            props.history.go(1);
+        });
+    }, []);
+
     function setData(rowFromService1, rowFromService2) {
         tmpData1 = [
             {

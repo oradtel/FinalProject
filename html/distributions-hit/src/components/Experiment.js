@@ -9,7 +9,6 @@ import axios from 'axios';
 import { BASE_API_URL } from '../utils/constants';
 import Swal from 'sweetalert2';
 
-
 const Experiment = (props) => {
     const isPicked1 = {
         picked: 0
@@ -23,7 +22,7 @@ const Experiment = (props) => {
 
 
     useEffect(() => {
-        (async () => {
+        (async () => {      
             const data = await experimentService.getData();
             console.log(10, data)
             let rowFromService1 = await getMyRow(1, data);
@@ -43,6 +42,12 @@ const Experiment = (props) => {
             console.log(data1);
         })();
     }, [])
+    useEffect(() => {
+        window.addEventListener("popstate", e => {
+            // Nope, go back to your page
+            props.history.go(1);
+        });
+    }, []);
 
     function setData(rowFromService1, rowFromService2) {
         tmpData1 = [
@@ -95,7 +100,7 @@ const Experiment = (props) => {
 
         setData2(tmpData2);
     }
-    
+
     const onSubmit = (data) => {
         var choice;
         if (isPicked1.picked){
@@ -125,6 +130,7 @@ const Experiment = (props) => {
 
     return (
         <div className="Experiment">
+
             <Form className="input-form" onSubmit={handleSubmit(onSubmit)}>
                 <motion.div
                     className="col-md-6 offset-md-3"

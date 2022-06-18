@@ -1,6 +1,6 @@
 function csvToString(){
     var fs = require('fs'); 
-    const csvFile = fs.readFileSync('./csv_files/amazon_headphones.csv');
+    const csvFile = fs.readFileSync('./csv_files/amazon_headphones_fixed.csv');
     const csvData = csvFile.toString();
     return csvData;
 }
