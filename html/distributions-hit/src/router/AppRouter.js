@@ -42,32 +42,6 @@ const AppRouter = () => {
         setUser({});
     };
 
-
-
-    // // we will store the user-entered data in each step in the user state that's an object.
-    // const [expData, setExpData] = useState({});
-
-    // // we're passing data to update the user state
-    // const updateExpData = (data) => {
-    //     // we're first spreading out the user object values using the prevUser variable and then spreading out the data 
-    //     // object so the resulting object will be the merging of two objects.
-    //     setExpData((prevExpData) => ({ ...prevExpData, ...data }));
-    // };
-
-    // const resetExpData = () => {
-    //     setExpData({});
-    // };
-
-    // function currentHeader(props) {
-    //     const isRegister = props.isRegister;
-    //     if (isRegister) {
-    //       return <Header />;
-    //     }
-    //     return;
-    //   }
-
-   
-
     return (
         <BrowserRouter>
             <div className="container">

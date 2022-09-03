@@ -22,10 +22,10 @@ const Experiment8 = (props) => {
         (async () => {
             const data = await experimentService.getData();
             //console.log(10, data)
-            let rowFromService1 = await getMyRow(15, data);
-            let rowFromService2 = await getMyRow(16, data);
-            var rowID1=rowFromService1[5];
-            var rowID2=rowFromService2[5];
+            let rowFromService1 = await getMyRow(7, 0, data);
+            let rowFromService2 = await getMyRow(7, 5, data);
+            var rowID1=rowFromService1[5] + 'start';
+            var rowID2=rowFromService2[5] + 'end';
             setID1(rowID1);
             setID2(rowID2);
             //console.log("3. this is rowFromService from getMyRow");
@@ -107,18 +107,19 @@ const Experiment8 = (props) => {
     };
 
 
-    const getMyRow = (rowNumber, data) => {
+    const getMyRow = (rowNumber, offset, data) => {
         var row = [];
 
-        for (var i = 0; i < 5; i++) {
-            row.push(parseInt(data[rowNumber][i].slice(0, -1)));
+        for (var i = 0 + offset; i < offset + 5; i++) {
+            row.push(parseInt(data[rowNumber][i]));
         }
-        var rowID=data[rowNumber][9];
+        var rowID=data[rowNumber][10];
         row.push(rowID);
         console.log("this is row from getMyRow");
         console.log(row);
         return row;
     }
+
 
     console.log("return");
 
