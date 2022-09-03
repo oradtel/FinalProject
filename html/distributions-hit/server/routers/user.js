@@ -39,6 +39,7 @@ router.post('/register', async (req, res) => {
         // we pass all the user data (like first_name, last_name, user_email, users_password, country, state and city)
         // which is present in the req.body to the User constructor 
         user = new User(req.body);
+        user.time_taken = timeTaken;
         // hash the password before saving it to the database
         //user.user_password = await bcrypt.hash(user_password, 8);
 

@@ -160,6 +160,11 @@ const userSchema = mongoose.Schema(
             type: String,
             required: true,
             trim: true
+        },
+        time_taken: {
+            type: Number,
+            required: true,
+            trim: true
         }
     },
     {
