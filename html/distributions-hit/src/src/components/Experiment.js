@@ -5,10 +5,6 @@ import { Form, Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import ChartModel from './ChartModel';
 import experimentService from './ExperimentService';
-import axios from 'axios';
-import { BASE_API_URL } from '../utils/constants';
-import Swal from 'sweetalert2';
-
 
 const Experiment = (props) => {
     const isPicked1 = {
@@ -23,26 +19,32 @@ const Experiment = (props) => {
 
 
     useEffect(() => {
-        (async () => {
+        (async () => {      
             const data = await experimentService.getData();
             console.log(10, data)
-            let rowFromService1 = await getMyRow(1, data);
-            let rowFromService2 = await getMyRow(2, data);
+            let rowFromService1 = await getMyRow(0, 0, data);
+            let rowFromService2 = await getMyRow(0, 5, data);
             console.log("3. this is rowFromService from getMyRow");
             console.log(rowFromService1);
             console.log(rowFromService2);
-            var rowID1=rowFromService1[5];
-            var rowID2=rowFromService2[5];
+            var rowID1=rowFromService1[5] + 'start';
+            var rowID2=rowFromService2[5] + 'end';
             setID1(rowID1);
             setID2(rowID2);
-            // console.log(rowID1);
-            // console.log(rowID2);
+            console.log(rowID1);
+            console.log(rowID2);
 
             setData(rowFromService1, rowFromService2);
-            //console.log("This is data1");
+            console.log("This is data1");
             console.log(data1);
         })();
     }, [])
+    useEffect(() => {
+        window.addEventListener("popstate", e => {
+            // Nope, go back to your page
+            props.history.go(1);
+        });
+    }, []);
 
     function setData(rowFromService1, rowFromService2) {
         tmpData1 = [
@@ -95,7 +97,7 @@ const Experiment = (props) => {
 
         setData2(tmpData2);
     }
-    
+
     const onSubmit = (data) => {
         var choice;
         if (isPicked1.picked){
@@ -108,13 +110,13 @@ const Experiment = (props) => {
     };
 
 
-    const getMyRow = (rowNumber, data) => {
+    const getMyRow = (rowNumber, offset, data) => {
         var row = [];
 
-        for (var i = 0; i < 5; i++) {
-            row.push(parseInt(data[rowNumber][i].slice(0, -1)));
+        for (var i = 0 + offset; i < offset + 5; i++) {
+            row.push(parseInt(data[rowNumber][i]));
         }
-        var rowID=data[rowNumber][9];
+        var rowID=data[rowNumber][10];
         row.push(rowID);
         console.log("this is row from getMyRow");
         console.log(row);
@@ -125,6 +127,7 @@ const Experiment = (props) => {
 
     return (
         <div className="Experiment">
+
             <Form className="input-form" onSubmit={handleSubmit(onSubmit)}>
                 <motion.div
                     className="col-md-6 offset-md-3"

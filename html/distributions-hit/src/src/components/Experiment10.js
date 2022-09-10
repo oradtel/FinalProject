@@ -26,14 +26,14 @@ const Experiment10 = (props) => {
         (async () => {
             const data = await experimentService.getData();
             //console.log(10, data)
-            let rowFromService1 = await getMyRow(19, data);
-            let rowFromService2 = await getMyRow(0, data);
+            let rowFromService1 = await getMyRow(9, 0, data);
+            let rowFromService2 = await getMyRow(9, 5, data);
             //console.log("3. this is rowFromService from getMyRow");
             //console.log(rowFromService);
-            var rowID1=rowFromService1[5];
-            var rowID2=rowFromService2[5];
-            setID1(rowID1);
-            setID2(rowID2);
+            var rowID1=rowFromService1[5] + 'start';
+            var rowID2=rowFromService2[5] + 'end';
+            setID1("wrong");
+            setID2("correct");
             console.log(rowFromService1);
             console.log(rowFromService2);
             setData(rowFromService1, rowFromService2);
@@ -42,27 +42,34 @@ const Experiment10 = (props) => {
         })();
     }, [])
 
+    useEffect(() => {
+        window.addEventListener("popstate", e => {
+            // Nope, go back to your page
+            props.history.go(1);
+        });
+    }, []);
+
     function setData(rowFromService1, rowFromService2) {
         tmpData1 = [
             {
                 "name": "1 star",
-                "percentage": rowFromService1[0]
+                "percentage": 14
             },
             {
                 "name": "2 stars",
-                "percentage": rowFromService1[1]
+                "percentage": 44
             },
             {
                 "name": "3 stars",
-                "percentage": rowFromService1[2]
+                "percentage": 32
             },
             {
                 "name": "4 stars",
-                "percentage": rowFromService1[3]
+                "percentage": 10
             },
             {
                 "name": "5 stars",
-                "percentage": rowFromService1[4]
+                "percentage": 0
             }
         ];
 
@@ -71,23 +78,23 @@ const Experiment10 = (props) => {
         tmpData2 = [
             {
                 "name": "1 star",
-                "percentage": rowFromService2[0]
+                "percentage": 0
             },
             {
                 "name": "2 stars",
-                "percentage": rowFromService2[1]
+                "percentage": 0
             },
             {
                 "name": "3 stars",
-                "percentage": rowFromService2[2]
+                "percentage": 10
             },
             {
                 "name": "4 stars",
-                "percentage": rowFromService2[3]
+                "percentage": 23
             },
             {
                 "name": "5 stars",
-                "percentage": rowFromService2[4]
+                "percentage": 67
             }
         ];
 
@@ -106,18 +113,19 @@ const Experiment10 = (props) => {
     };
     
 
-    const getMyRow = (rowNumber, data) => {
+    const getMyRow = (rowNumber, offset, data) => {
         var row = [];
 
-        for (var i = 0; i < 5; i++) {
-            row.push(parseInt(data[rowNumber][i].slice(0, -1)));
+        for (var i = 0 + offset; i < offset + 5; i++) {
+            row.push(parseInt(data[rowNumber][i]));
         }
-        var rowID=data[rowNumber][9];
+        var rowID=data[rowNumber][10];
         row.push(rowID);
         console.log("this is row from getMyRow");
         console.log(row);
         return row;
     }
+
 
     console.log("return");
 

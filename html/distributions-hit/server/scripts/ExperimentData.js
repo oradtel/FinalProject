@@ -1,98 +1,25 @@
 function csvToString(){
     var fs = require('fs'); 
-    const csvFile = fs.readFileSync('./csv_files/amazon_headphones.csv');
+    const csvFile = fs.readFileSync('./csv_files/test_figures.csv');
     const csvData = csvFile.toString();
     return csvData;
 }
 function getData() {
     csvData=csvToString();
-    var csvLines=csvData.split('\n');
+    var csvLines=csvData.split('\r\n');
     var finalData=[];
     for (var i=0;i<csvLines.length;i++) {
         var tempData=csvLines[i].split(',');
+        console.log(tempData);
         finalData.push(tempData);
     }
     // Shuffle array
     const shuffled = finalData.sort(() => 0.5 - Math.random());
 
     // Get sub-array of first n elements after shuffled
-    let selected = shuffled.slice(0, 20);
-    // var randRow=generateRandom(1,180);
-    // var randomData=[];
-    // for (var i=randRow;i<randRow+20;i++){
-    //     randomData.push(finalData[i]);
-    // }
+    let selected = shuffled.slice(0, 10);
     return selected;
 }
 
-function generateRandom(min = 0, max = 100) {
-
-    // find diff
-    let difference = max - min;
-
-    // generate random number 
-    let rand = Math.random();
-
-    // multiply with difference 
-    rand = Math.floor( rand * difference);
-
-    // add with min value 
-    rand = rand + min;
-
-    return rand;
-}
 module.exports = {getData}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const { resolve } = require('path');
-// //const { resolve } = require('path');
-// var data=[];
-// function copyData(csvrow) {
-//     //console.log(csvrow);
-//     data.push(csvrow);
-//     //console.log("in copydata: " + data)
-// }
-// function getData(){
-
-//     var fs = require('fs'); 
-//     var {parse} = require('csv-parse');
-//     var csvData=[];
-//         fs.createReadStream('./csv_files/short.csv')
-//             .pipe(parse({delimiter: ','}))
-//             .on('data', function(csvrow) {
-//                 copyData(csvrow);
-//                 //do something with csvrow
-//                 csvData.push(csvrow);
-//             })
-//             .on('end',function() {
-//             //do something with csvDataconsole.log(csvData);
-//                 const dataaa=structuredClone(csvData);
-//                 console.log(dataaa);            
-//             });
-//             console.log("final: " + csvData);
-//             //console.log(csvData);
-//             //return csvData;
-
-// }
-
-
-
-
-// module.exports = {getData}

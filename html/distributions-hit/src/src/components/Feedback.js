@@ -5,12 +5,20 @@ import { motion } from 'framer-motion';
 import axios from 'axios';
 import { BASE_API_URL } from '../utils/constants';
 import Swal from 'sweetalert2';
+import { useEffect, useState } from "react";
+
 
 const Feedback = (props) => {
     // we're destructuring the user prop from the props object which we're passing in the route of the AppRouter.js 
     // file.Then we're using the defaultValues property to set the value for each input field.
     const { user } = props;
 
+    useEffect(() => {
+        window.addEventListener("popstate", e => {
+            // Nope, go back to your page
+            props.history.go(1);
+        });
+    }, []);
 
     var considerations;
     var choice_affect;
