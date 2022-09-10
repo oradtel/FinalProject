@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const userRouter = require('./routers/user');
-require('./db');
+const userRouter = require('./server/routers/user');
+require('./server/db');
 
 const app = express();
 const PORT = process.env.PORT || 3035;
